@@ -14,21 +14,39 @@
     <button type="submit" value="beef" name="choice">🥩</button>
     <button type="submit" value="fish" name="choice">🐟</button>
   </form>
-  <div id="recipeContainer" class="hidden">
+  <div id="recipeContainer">
 
     <!-- If no recipe yet, show: -->
-    <h2>Pick your favourite taco ingredient 👆</h2>
-    <!-- Else, show the recipe name e.g. <h2>Recipe name</h2>-->
-
-    <h3>Ingredients:</h3>
-    <ul id="ingredientsList">
-      <li>Protein name, protein preparation</li>
-      <li>Salsa name</li>
-      <li>Every other topping</li>
-    </ul>
-
-
-
+    <% if (!locals.choice) { %>
+      <h2>Pick your favourite taco ingredient 👆</h2>
+    <% } else if (choice === "chicken") { %>
+      <!-- Show chicken taco ingredients -->
+      <h3>Ingredients:</h3>
+      <ul id="ingredientsList">
+        <li><%= tacos[0].ingredients.protein.name %>, <%= tacos[0].ingredients.protein.preparation %></li>
+        <li><%= tacos[0].ingredients.salsa.name %></li>
+        <li><%= tacos[0].ingredients.toppings[0].name %>, <%= tacos[0].ingredients.toppings[0].quantity %></li>
+      </ul>
+    <% } else if (choice === "beef") { %>
+      <!-- Show beef taco ingredients -->
+      <h3>Ingredients:</h3>
+      <ul id="ingredientsList">
+        <li><%= tacos[1].ingredients.protein.name %>, <%= tacos[1].ingredients.protein.preparation %></li>
+        <li><%= tacos[1].ingredients.salsa.name %></li>
+        <li><%= tacos[1].ingredients.toppings[0].name %>, <%= tacos[1].ingredients.toppings[0].quantity %></li>
+      </ul>
+    <% } else if (choice === "fish") { %>
+      <!-- Show fish taco ingredients -->
+      <h3>Ingredients:</h3>
+      <ul id="ingredientsList">
+        <li><%= tacos[2].ingredients.protein.name %>, <%= tacos[2].ingredients.protein.preparation %></li>
+        <li><%= tacos[2].ingredients.salsa.name %></li>
+        <li><%= tacos[2].ingredients.toppings[0].name %>, <%= tacos[2].ingredients.toppings[0].quantity %></li>
+      </ul>
+    <% } else { %>
+      <!-- Invalid choice -->
+      <h2>Invalid choice</h2>
+    <% } %>
   </div>
 </body>
 
